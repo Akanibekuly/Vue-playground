@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Основы Vue</title>
+        <link rel="stylesheet" href="theme.css">
+        <style>
+            [v-cloak] {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="container pt-5" id = "app" v-cloak>
+        <div class="card center">
+            <div v-html="myHtml"></div>
+<!--            <h1 v-text="title"></h1>-->
+<!--            <h2 v-once>{{ title }}</h2>-->
+<!--            <h2 v-pre>{{ title }}</h2>-->
+
+<!--            <button-->
+<!--                class="btn"-->
+<!--                @click="title = 'Теперь я другое название'"-->
+<!--            >-->
+<!--                Изменить название-->
+<!--            </button>-->
+            <div class="form-control">
+                <input type="text" @keyup.enter="addItem" ref="myInput">
+            </div>
+            <ul class="list" v-if="items.length">
+<!--                <li class="list-item" v-for="item in 7">-->
+<!--                    {{ item }}-->
+<!--                </li>-->
+                <li
+                        class="list-item"
+                        v-for="(value, i) in items"
+                        @click="items.splice(i, 1)"
+                        :key="value"
+                >
+                    <strong>{{ value }}</strong>&nbsp;
+                    <input type="text" @click.stop>
+                </li>
+            </ul>
+            <h3 v-show="items.length === 0">Элементов нет</h3>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="app.js"></script>
+    </body>
+</html>
